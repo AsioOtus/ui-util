@@ -13,7 +13,7 @@ public struct ExpandableView <Content: View>: View {
 
 	public init (
 		isExpanded: Binding<Bool>,
-		content: () -> Content
+		@ViewBuilder content: () -> Content
 	) {
 		self._isExpanded = isExpanded
 		self.content = content()
