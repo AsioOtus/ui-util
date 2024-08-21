@@ -22,7 +22,6 @@ public struct ExpandableView <Content: View>: View {
 	public var body: some View {
 		content
 			.animatableHeight(height: height)
-			.allowsTightening(isExpanded)
 			.clipped()
 			.background {
 				content
