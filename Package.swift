@@ -3,28 +3,28 @@
 import PackageDescription
 
 let package = Package(
-	name: "ui-extensions",
+	name: "ui-util",
 	platforms: [
 		.iOS(.v13)
 	],
 	products: [
 		.library(
-			name: "SwiftUIExtensions",
-			targets: ["SwiftUIExtensions"]
+			name: "SwiftUIUtil",
+			targets: ["SwiftUIUtil"]
 		),
 		.library(
-			name: "UIKitExtensions",
-			targets: ["UIKitExtensions"]
+			name: "UIKitUtil",
+			targets: ["UIKitUtil"]
 		),
 	],
 	targets: [
 		.target(
-			name: "SwiftUIExtensions",
-			path: "SwiftUIExtensions/Source"
+			name: "SwiftUIUtil",
+			path: "SwiftUIUtil/Source"
 		),
 		.target(
-			name: "UIKitExtensions",
-			path: "UIKitExtensions/Source"
+			name: "UIKitUtil",
+			path: "UIKitUtil/Source"
 		)
 	]
 )
