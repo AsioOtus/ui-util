@@ -7,3 +7,9 @@ public extension NSLayoutConstraint {
 		return self
 	}
 }
+
+public extension Array where Element == NSLayoutConstraint {
+    func activate () {
+        NSLayoutConstraint.activate(self)
+    }
+}

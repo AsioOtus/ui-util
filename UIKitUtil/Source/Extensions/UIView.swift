@@ -1,6 +1,10 @@
 import UIKit
 
 public extension UIView {
+    func aspectRatioConstraint (_ value: Double) -> NSLayoutConstraint {
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: value)
+    }
+
     func centeredConstraints (in view: UIView) -> [NSLayoutConstraint] {
         [
             centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -19,23 +23,25 @@ public extension UIView {
 }
 
 public extension UIView {
-	func squared () {
-        aspectRatio(1)
-	}
-
 	func aspectRatio (_ value: Double) {
-		widthAnchor.constraint(equalTo: heightAnchor, multiplier: value).isActive = true
+        translatesAutoresizingMaskIntoConstraints = false
+        aspectRatioConstraint(value).isActive = true
 	}
 
 	func centered (in view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(centeredConstraints(in: view))
+        translatesAutoresizingMaskIntoConstraints = false
+        centeredConstraints(in: view).activate()
 	}
 
 	func pinBounds (to view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(pinBoundsConstraints(to: view))
+        translatesAutoresizingMaskIntoConstraints = false
+        pinBoundsConstraints(to: view).activate()
 	}
+
+    func constraints (_ constraints: (UIView) -> [NSLayoutConstraint]) {
+        translatesAutoresizingMaskIntoConstraints = false
+        constraints(self).activate()
+    }
 
 	func insertFullframe (_ view: UIView, at index: Int? = nil) {
 		if let index = index {
@@ -44,7 +50,6 @@ public extension UIView {
 			addSubview(view)
 		}
 
-		view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(pinBoundsConstraints(to: view))
+        view.pinBounds(to: self)
 	}
 }
